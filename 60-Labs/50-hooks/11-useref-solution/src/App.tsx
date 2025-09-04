@@ -20,6 +20,7 @@ function App() {
     setPreviousWord(previousWordRef.current.at(index) ?? "");
   }
 
+  console.log("Rendering ...");
   return (
     <div className="App">
       <div>
