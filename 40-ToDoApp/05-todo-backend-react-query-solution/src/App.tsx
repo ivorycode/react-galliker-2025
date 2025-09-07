@@ -1,21 +1,26 @@
-import { lazy, Suspense } from 'react';
-import {BrowserRouter as Router, NavLink, Routes, Route} from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { lazy, Suspense } from "react";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 // import  ToDoScreen  from './components/ToDoScreen';
 // import  DoneScreen  from './components/DoneScreen';
 
-const ToDoScreen = lazy(() => import('./components/ToDoScreen'));
-const DoneScreen = lazy(() => import('./components/DoneScreen'));
+const ToDoScreen = lazy(() => import("./components/ToDoScreen"));
+const DoneScreen = lazy(() => import("./components/DoneScreen"));
 
 export function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnWindowFocus: true,
+        refetchOnWindowFocus: false,
         // staleTime: 10000,
-      }
-    }
+      },
+    },
   });
 
   return (
@@ -39,7 +44,7 @@ export function App() {
 
             <Suspense fallback={<div>Loading ...</div>}>
               <Routes>
-                <Route path="/done" element={<DoneScreen/>} />
+                <Route path="/done" element={<DoneScreen />} />
                 <Route path="/" element={<ToDoScreen />} />
               </Routes>
             </Suspense>
@@ -50,7 +55,10 @@ export function App() {
 
       <footer className="info">
         <p>
-          JavaScript Example / Initial template from <a href="https://github.com/tastejs/todomvc-app-template">todomvc-app-template</a>
+          JavaScript Example / Initial template from{" "}
+          <a href="https://github.com/tastejs/todomvc-app-template">
+            todomvc-app-template
+          </a>
         </p>
       </footer>
     </div>
